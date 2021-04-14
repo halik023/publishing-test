@@ -1,16 +1,16 @@
 <template>
-<div class="container">
-    <FormInit />
+<div>
+    <Header />
 </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import FormInit from '@/components/FormInit.vue'
+import Header from '@/components/Header.vue'
 
 export default {
     components: {
-        FormInit
+        Header
     }
 }
 </script>
