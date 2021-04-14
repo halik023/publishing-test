@@ -23,7 +23,7 @@ export default {
     data() {
         return {
             formData: {
-                numberOfPages: 30,
+                numberOfPages: 48,
                 deliveryDate: '2021-04-16'
             }
         }

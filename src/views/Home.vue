@@ -5,7 +5,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import FormInit from '@/components/FormInit.vue'
 
 export default {
