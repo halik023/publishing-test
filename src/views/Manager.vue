@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="manager">
     <Header />
     <Navbar :infoNavbar="infoNavbar" />
     <div class="container-fluid">
@@ -117,10 +117,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container-fluid {
+.manager {
+    min-height: 100vh;
     background: #ddd;
 }
-
 .program-summary {
     padding: 1rem;
 

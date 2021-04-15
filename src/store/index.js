@@ -38,7 +38,7 @@ export default createStore({
                 name: 'Cover',
                 status: 'Not Started',
                 deliveryDate: payload.deliveryDate,
-                expand: true,
+                expand: false,
                 screens: [
                     {
                         type: 'cover',
@@ -53,7 +53,7 @@ export default createStore({
                         name: 'Section ' + (Math.floor(i / 4) + 1),
                         status: 'Not Started',
                         deliveryDate: payload.deliveryDate,
-                        expand: true,
+                        expand: false,
                         screens: []
                     })
 

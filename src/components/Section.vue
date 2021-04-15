@@ -43,16 +43,19 @@ export default {
     .section {
         background-color: #fff;
         margin: 10px 0;
-        padding: 10px;
 
         .section-title {
+            cursor: pointer;
             display: flex;
             justify-content: space-between;
+            padding: 10px;
         }
 
         .container-screen {
             display: flex;
             flex-wrap: wrap;
+            padding: 10px;
+            border-top: 1px solid #ddd;
 
             .screen {
                 display: flex;
