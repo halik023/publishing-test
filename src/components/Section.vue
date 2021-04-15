@@ -40,21 +40,22 @@ export default {
 
 <style lang="scss" scoped>
 .container-section {
+    padding: 1rem;
     .section {
         background-color: #fff;
-        margin: 10px 0;
+        margin: 0 0 1rem 0;
 
         .section-title {
             cursor: pointer;
             display: flex;
             justify-content: space-between;
-            padding: 10px;
+            padding: 1rem;
         }
 
         .container-screen {
             display: flex;
             flex-wrap: wrap;
-            padding: 10px;
+            padding: 1rem;
             border-top: 1px solid #ddd;
 
             .screen {

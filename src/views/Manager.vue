@@ -4,10 +4,10 @@
     <Navbar :infoNavbar="infoNavbar" />
     <div class="container-fluid">
         <div class="row">
-            <div class="col-9">
+            <div class="col-9 border-r">
                 <Section :sections="sections" />
             </div>
-            <div class="col-3">
+            <div class="col-3 ">
                 <div class="program-summary">
                     <div class="program-summary-title">
                         PROGRAM SUMMARY
@@ -121,9 +121,12 @@ export default {
     min-height: 100vh;
     background: #ddd;
 }
+.border-r {
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    min-height: calc(100% - 41px - 54px);
+}
 .program-summary {
     padding: 1rem;
-
     .program-summary-title {
         color: #42738d;
         font-size: 18px;

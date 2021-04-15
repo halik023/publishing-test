@@ -21,6 +21,16 @@ const routes = [
     path: '/digital-edition',
     name: 'DigitalEdition',
     component: () => import('../views/DigitalEdition.vue')
+  },
+  {
+    path: '/animation',
+    name: 'Animation',
+    component: () => import('../views/Animation.vue')
+  },
+  {
+    path: '/velocity',
+    name: 'Velocity',
+    component: () => import('../views/Velocity.vue')
   }
 ]
 
