@@ -1,4 +1,6 @@
 import { createStore } from 'vuex'
+import shortid from 'shortid'
+
 
 export default createStore({
     state: {
@@ -16,6 +18,15 @@ export default createStore({
                 ...state.infoProject,
                 ...payload
             }
+        },
+        changeExpand(state, id) {
+            console.log(id);
+            let index = state.infoProject.sections.findIndex((item) => {
+                return item.id == id;
+            })
+            console.log(index)
+            let expand = state.infoProject.sections[index].expand;
+            state.infoProject.sections[index].expand = !expand;
         }
     },
     actions: {
@@ -23,6 +34,7 @@ export default createStore({
             let sections = [];
             let sheets = payload.numberOfPages / 2 + 2
             sections.push({
+                id: shortid.generate(),
                 name: 'Cover',
                 status: 'Not Started',
                 deliveryDate: payload.deliveryDate,
@@ -37,7 +49,8 @@ export default createStore({
             for (let i = 0; i <= sheets - 2; i++) {
                 if (i % 4 === 0) {
                     sections.push({
-                        name: 'Session ' + (Math.floor(i / 4) + 1),
+                        id: shortid.generate(),
+                        name: 'Section ' + (Math.floor(i / 4) + 1),
                         status: 'Not Started',
                         deliveryDate: payload.deliveryDate,
                         expand: true,
@@ -57,6 +70,9 @@ export default createStore({
                 sections
             }
             commit('setInfoPeoject', payload)
+        },
+        changeExpand({ commit }, id) {
+            commit('changeExpand', id)
         }
     },
 })

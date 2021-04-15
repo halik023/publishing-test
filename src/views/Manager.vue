@@ -5,21 +5,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-9">
-                <div class="container-section">
-                    <div class="section" v-for="(section, index) in getInfoProject.sections" :key="index">
-                        <div class="section-title" @click="!section.expand">
-                            <div>{{section.name}}</div>
-                            <div>{{section.deliveryDate}}</div>
-                        </div>
-                        <div v-show="section.expand" class="container-screen">
-                            <div class="screen" v-for="(screen, i) in section.screens" :key="i">
-                                <div>{{screen.type}}</div>
-                                <div>{{screen.orderPage}}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                <Section :sections="sections" />
             </div>
             <div class="col-3">
                 <div class="program-summary">
@@ -100,6 +86,7 @@
 <script>
 import Header from '@/components/Header.vue'
 import Navbar from '@/components/Navbar.vue'
+import Section from '@/components/Section.vue'
 import {
     mapGetters
 } from 'vuex'
@@ -113,11 +100,15 @@ export default {
                 sheets: this.getInfoProject.numberOfPages / 2 + 2,
                 screens: this.getInfoProject.numberOfPages / 2 + 2,
             }
+        },
+        sections() {
+            return this.getInfoProject.sections;
         }
     },
     components: {
         Header,
-        Navbar
+        Navbar,
+        Section
     },
     mounted() {
         console.log(this.getInfoProject);
@@ -126,8 +117,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.program-summary {
+.container-fluid {
     background: #ddd;
+}
+
+.program-summary {
     padding: 1rem;
 
     .program-summary-title {
@@ -155,27 +149,6 @@ export default {
 
             .item-value.countdown {
                 color: #42738d;
-            }
-        }
-    }
-}
-
-.container-section {
-    .section {
-        .section-title {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .container-screen {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-
-            .screen {
-                margin: 10px 0;
-                width: 24%;
-                background-color: #42738d;
             }
         }
     }
