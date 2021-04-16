@@ -19,11 +19,14 @@
         <button type="button" class="btn btn-primary" @click="play">Play</button>
     </div>
 
+    <div class="color mt-3 mb-4" ref="color"></div>
+    <button type="button" class="btn btn-primary" @click="gerenate">Gerenate</button>
 </div>
 </template>
 
 <script>
 import Velocity from 'velocity-animate';
+import randomColor from 'randomcolor'
 export default {
     data() {
         return {
@@ -34,8 +37,14 @@ export default {
     methods: {
         play() {
             let el = this.$refs.img;
-            Velocity(el, this.animation , this.duration*1000)
+            Velocity(el, this.animation, {duration: this.duration * 1000, offset: 250})
+        },
+
+        gerenate() {
+            let el = this.$refs.color;
+            el.style.backgroundColor = randomColor();
         }
+
     }
 }
 </script>
@@ -44,5 +53,11 @@ export default {
 #img {
     width: 300px;
     height: auto;
+}
+
+.color {
+    width: 300px;
+    height: 300px;
+    background-color: darkslategray;
 }
 </style>
