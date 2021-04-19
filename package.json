@@ -11,12 +11,16 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "fabric": "^4.4.0",
+    "gsap": "^3.6.1",
+    "randomcolor": "^0.6.2",
     "shortid": "^2.2.16",
+    "velocity-animate": "^1.5.2",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
+    "@types/velocity-animate": "^2.0.1",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",

@@ -27,7 +27,17 @@ export default createStore({
             console.log(index)
             let expand = state.infoProject.sections[index].expand;
             state.infoProject.sections[index].expand = !expand;
+        },
+        changeAllExpand(state) {
+            state.infoProject.sections = state.infoProject.sections.map((item) => {
+                return {
+                    ...item,
+                    expand: true,
+                }
+            })
+            console.log(state.infoProject.sections);
         }
+
     },
     actions: {
         infoProject({ commit }, payload) {
@@ -38,7 +48,7 @@ export default createStore({
                 name: 'Cover',
                 status: 'Not Started',
                 deliveryDate: payload.deliveryDate,
-                expand: true,
+                expand: false,
                 screens: [
                     {
                         type: 'cover',
@@ -53,7 +63,7 @@ export default createStore({
                         name: 'Section ' + (Math.floor(i / 4) + 1),
                         status: 'Not Started',
                         deliveryDate: payload.deliveryDate,
-                        expand: true,
+                        expand: false,
                         screens: []
                     })
 
@@ -73,6 +83,9 @@ export default createStore({
         },
         changeExpand({ commit }, id) {
             commit('changeExpand', id)
+        },
+        changeAllExpand({ commit }) {
+            commit('changeAllExpand')
         }
     },
 })

@@ -13,6 +13,11 @@ const routes = [
     component: () => import('../views/Manager.vue')
   },
   {
+    path: '/animation',
+    name: 'Animation',
+    component: () => import('../views/Animation.vue')
+  },
+  {
     path: '/print-edition',
     name: 'PrintEdition',
     component: () => import('../views/PrintEdition.vue')
@@ -21,6 +26,11 @@ const routes = [
     path: '/digital-edition',
     name: 'DigitalEdition',
     component: () => import('../views/DigitalEdition.vue')
+  },
+  {
+    path: '/crop',
+    name: 'Crop',
+    component: () => import('../views/Crop.vue')
   }
 ]
 

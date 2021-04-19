@@ -14,6 +14,10 @@
                 </div>
             </div>
         </div>
+        <div class="section-btn">
+            <button type="button" class="btn btn-outline-primary" @click="expandSections()">Expand All Sections</button>
+            <button type="button" class="btn btn-primary">Add a Section</button>
+        </div>
     </div>
 </div>
 </template>
@@ -29,10 +33,15 @@ export default {
     },
     methods: {
         ...mapActions([
-            'changeExpand'
+            'changeExpand',
+            'changeAllExpand'
+
         ]),
         showDetail(id) {
             this.changeExpand(id);
+        },
+        expandSections(){
+            this.changeAllExpand();
         }
     }
 };
