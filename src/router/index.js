@@ -36,6 +36,11 @@ const routes = [
     path: '/fabric',
     name: 'Fabric',
     component: () => import('../views/Fabric.vue')
+  },
+  {
+    path: '/crop-image',
+    name: 'Crop',
+    component: () => import('../views/Crop.vue')
   }
 ]
 
