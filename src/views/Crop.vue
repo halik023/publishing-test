@@ -1,10 +1,17 @@
 <template>
 <div class="container">
-    <canvas id="c"></canvas>
+    <canvas id="canvas" height="900" width="900"></canvas>
     <button id="crop" @click="crop()">crop</button>
     <button id="startCrop" style="border:1px solid #000000;" @click="startCrop()">start crop</button>
+    <br />
+    <button id="crop" @click="deleteImg()">delete</button>
+    <button id="crop" @click="flipX()">flipX</button>
+    <button id="crop" @click="flipY()">flipY</button>
+    <button id="crop" @click="rotate()">rotate</button>
+    <button id="crop" @click="zoon()">zoom</button>
+
     <br>
-    <canvas id="canvas" height="900" width="900"></canvas>
+    <canvas style="visibility: hidden;" id="canvas_crop"></canvas>
 </div>
 </template>
 
@@ -38,33 +45,41 @@ export default {
                 left: canvas.getWidth() / 2,
                 top: 100,
                 selectable: true,
+                zoomedXY: false,
             });
+            canvas.centerObject(img);
+            img.sendToBack();
             canvas.add(img);
             canvas.selection = false;
             canvas.renderAll();
-        },{ crossOrigin: 'anonymous' });
+        }, {
+            crossOrigin: 'anonymous'
+        });
 
     },
     methods: {
         startCrop() {
             if (window.canvas.getActiveObject()) {
-                this.Object = window.canvas.getActiveObject();
-                console.log(this.Object.left);
+                window.object = window.canvas.getActiveObject();
                 this.el = new fabric.Rect({
                     fill: 'rgba(0,0,0,0)',
                     originX: 'left',
                     originY: 'top',
                     stroke: '#ccc',
-                    //strokeDashArray: [2, 2],
+                    // strokeDashArray: [2, 2],
                     strokWidth: 5,
                     opacity: 1,
                     width: 1,
                     height: 1,
+                    // originX: 'middle',
+                    // originY: 'middle',
                     borderColor: '#36fd00',
                     cornerColor: 'green',
                     hasRotatingPoint: false,
-                    selectable: true
+                    centeredRotation: true,
+
                 });
+                // this.el.angle = window.canvas.getActiveObject().angle;
                 this.el.left = window.canvas.getActiveObject().left;
                 this.el.top = window.canvas.getActiveObject().top;
                 this.el.width = window.canvas.getActiveObject().width * window.canvas.getActiveObject().scaleX;
@@ -75,7 +90,6 @@ export default {
                 alert("vui lòng chọn hình");
             }
             this.isCropping = true;
-            console.log(this.isCropping);
             // let that = this;
         },
         cropImage(png, left, top, height, width) {
@@ -97,33 +111,59 @@ export default {
             fabric.Image.fromURL(window.canvas.toDataURL('png'), function (img) {
                 img.set('left', -left);
                 img.set('top', -top);
-                window.canvas.add(img)
-                window.canvas.setHeight(height);
-                window.canvas.setWidth(width);
-                window.canvas.renderAll();
+                canvas_crop.add(img)
+                canvas_crop.setHeight(height);
+                canvas_crop.setWidth(width);
+                canvas_crop.renderAll();
                 fabric.Image.fromURL(canvas_crop.toDataURL('png'), function (croppedImg) {
                     croppedImg.set('left', left);
                     croppedImg.set('top', top);
                     window.canvas.add(croppedImg).renderAll();
                 });
-            });
 
+            });
         },
         crop() {
             let el = this.el;
-            // let object = this.Object;
             var width = el.width * 1;
             var height = el.height * 1;
-            console.log(parseInt(el.scaleY * height), parseInt(width * el.scaleX), el.left, el.top );
-            // this.cropImage(object, el.left, el.top, parseInt(el.scaleY * height), parseInt(width * el.scaleX));
+            console.log(parseInt(el.scaleY * height), parseInt(width * el.scaleX), el.left, el.top);
+            this.cropImage(window.object, el.left, el.top, parseInt(el.scaleY * height), parseInt(width * el.scaleX));
 
-            // window.canvas.remove(object);
-            // window.canvas.remove(window.canvas.getActiveObject());
- 
-            // window.canvas.renderAll();
+            // window.canvas.setActiveObject(window.object);
+            window.canvas.remove(window.object);
+            window.canvas.remove(window.canvas.getActiveObject());
+            window.canvas.renderAll();
+            this.isCropping = false;
+        },
+        deleteImg() {
+            window.canvas.remove(window.canvas.getActiveObject());
 
-            // this.isCropping = false;
-        }
+        },
+        flipX() {
+            let obj = window.canvas.getActiveObject();
+            obj.set('flipX', !obj.flipX);
+            window.canvas.renderAll();
+        },
+        flipY() {
+            let obj = window.canvas.getActiveObject();
+            obj.set('flipY', !obj.flipY);
+            window.canvas.renderAll();
+        },
+        rotate() {
+            let obj = window.canvas.getActiveObject();
+            let angle = obj.angle;
+
+            angle += 90;
+            console.log(angle);
+            obj.rotate(angle);
+            window.canvas.renderAll();
+        },
+        zoom() {
+            window.canvas.getActiveObject().zoomBy(0, 0, 10, function () {
+                window.canvas.renderAll()
+            });
+        },
 
     }
 }
