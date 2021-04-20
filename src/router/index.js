@@ -41,6 +41,12 @@ const routes = [
     path: '/crop-image',
     name: 'Crop',
     component: () => import('../views/Crop.vue')
+  },
+  ,
+  {
+    path: '/filter',
+    name: 'Filter',
+    component: () => import('../views/Filter.vue')
   }
 ]
 
