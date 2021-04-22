@@ -42,11 +42,15 @@ const routes = [
     name: 'Crop',
     component: () => import('../views/Crop.vue')
   },
-  ,
   {
     path: '/filter',
     name: 'Filter',
     component: () => import('../views/Filter.vue')
+  },
+  {
+    path: '/text',
+    name: 'Text',
+    component: () => import('../views/Text.vue')
   }
 ]
 
