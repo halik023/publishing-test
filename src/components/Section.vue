@@ -10,20 +10,21 @@
 
                 </div>
                 <div class="section-title-right">
-                    <div class="section-title-right-status"></div>
-                        <div class="section-title-right-1">
-                            <div class="section-title-right-1-1">
-                                
-                            </div>
-                        </div>
-                        <div>
+                    <div class="section-title-right-status">
+                        <div class="section-title-right-status-value">
 
                         </div>
-                        <div>
+                        <div class="section-title-right-status-1">
+
+                        </div>
+                        <div class="section-title-right-status-1 center">
+
+                        </div>
+                        <div class="section-title-right-status-1">
 
                         </div>
                     </div>
-                    <div class="section-title-right-deliverydate">{{ section.deliveryDate }}</div>
+                    <div>{{ section.deliveryDate }}</div>
                 </div>
 
             </div>
@@ -77,26 +78,47 @@ export default {
             .section-title-left {
                 display: flex;
                 align-items: center;
+
                 .section-title-left-color {
                     width: 12px;
                     height: 12px;
                     background-color: cornflowerblue;
                     border-radius: 50%;
                 }
-                .section-title-left-arrow{
+
+                .section-title-left-arrow {
                     width: 10px;
                     height: 10px;
                     margin: 0 3.5px 0 7px;
                     color: #565656;
                 }
-                .section-title-left-name{
+
+                .section-title-left-name {
                     font-size: 12px;
                 }
             }
+
             .section-title-right {
                 display: flex;
                 align-items: center;
 
+                .section-title-right-status {
+                    border-radius: 9px;
+                    overflow: hidden;
+                    width: 140px;
+                    height: 6px;
+                    display: flex;
+
+                    .section-title-right-status-1 {
+                        background-color: #D3D3D3;
+                        width: 100%;
+                        flex: 1;
+                    }
+
+                    .section-title-right-status-1.center {
+                        margin: 0 2px;
+                    }
+                }
             }
         }
 
